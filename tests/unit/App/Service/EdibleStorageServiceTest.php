@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace App\Tests\unit\App\Service;
 
 use App\Enum\EdibleType;
+use App\Enum\EdibleUnit;
 use App\Filters\EdibleFilter;
 use App\Model\Edible;
 use App\Service\EdibleStorage\Collection\EdibleCollectionInterface;
@@ -14,13 +15,9 @@ use App\Service\EdibleStorage\Collection\VegetableCollection;
 use App\Service\EdibleStorage\EdibleStorageService;
 use App\Service\EdibleStorage\Exception\DuplicateEdibleException;
 use App\Service\EdibleStorage\Exception\EdibleNotFoundException;
-use App\Service\EdibleStorage\Exception\InvalidEdibleTypeException;
 use App\Service\EdibleStorage\RequestReaderInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use App\Enum\EdibleUnit;
-use ReflectionClass;
-use ReflectionEnum;
 
 class EdibleStorageServiceTest extends TestCase
 {
@@ -60,6 +57,9 @@ class EdibleStorageServiceTest extends TestCase
         $this->fruitCollectionMock->expects($this->once())
             ->method('add')
             ->with($edible);
+
+        $this->vegetableCollectionMock->expects($this->never())
+            ->method('add');
 
         $this->edibleStorageService->add($edible);
     }
