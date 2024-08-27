@@ -1,0 +1,10 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: etc/local/Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    command: php -S 0.0.0.0:8080 -t /app/public

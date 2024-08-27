@@ -3,3 +3,12 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+edible_list:
+    path: /v1/edibles
+    methods: GET
+    controller: App\Controller\EdibleController::index
+edible_add:
+    path: /v1/edibles
+    methods: POST
+    controller: App\Controller\EdibleController::add
